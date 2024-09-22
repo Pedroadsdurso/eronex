@@ -1,0 +1,726 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ofertas Disponíveis - 6</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <script type="text/javascript" src="js/track.js"></script>
+    <style>
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            text-align: center;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 400px;
+        }
+        .popup p {
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            color: #333;
+        }
+        .popup button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        .popup button:hover {
+            background-color: #0056b3;
+        }
+        .popup .close {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            background: transparent;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #ff0000;
+        }
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .guarantee-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 40px;
+            padding: 40px 20px 20px; /* Added more padding to avoid overlap */
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ccc;
+            text-align: center;
+            position: relative;
+        }
+
+        .guarantee-text {
+            max-width: 75%;
+        }
+
+        .guarantee-text h3 {
+            margin: 0 0 10px;
+            color: #333;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .guarantee-text p {
+            margin: 0;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .guarantee-icon {
+            font-size: 2em;
+            color: #27ae60;
+            position: absolute;
+            top: -40px; /* Increased spacing */
+            background: white;
+            border-radius: 50%;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .guarantee-box {
+                text-align: center;
+            }
+            .guarantee-text {
+                max-width: 100%;
+                margin-bottom: 15px;
+            }
+        }
+
+        .fixed-discount {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 10px 0;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .discount-timer {
+            font-size: 1em;
+            margin-right: 20px;
+        }
+
+        .discount-timer span {
+            font-weight: bold;
+        }
+
+        .get-plan {
+            background-color: #24AE60;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            animation: pulse 2s infinite;
+        }
+
+        .get-plan:hover {
+            background-color: #0056b3;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(0, 123, 255, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
+            }
+        }
+
+        .review-section {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .review-section h2 {
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            color: #333;
+        }
+
+        .review {
+            display: flex;
+            align-items: center;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .review img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .review .review-text {
+            text-align: left;
+        }
+
+        .review .review-text h4 {
+            margin: 0;
+            font-size: 1em;
+            color: #333;
+        }
+
+        .review .review-text p {
+            margin: 5px 0;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .faq-section {
+            margin-top: 40px;
+            text-align: left;
+            padding-bottom: 60px; /* Espaço adicional para evitar sobreposição */
+        }
+
+        .faq-section h2 {
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            color: #333;
+            text-align: center;
+        }
+
+        .faq {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq h3 {
+            margin: 0;
+            font-size: 1em;
+            color: #333;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq p {
+            margin: 10px 0 0;
+            font-size: 0.9em;
+            color: #666;
+            display: none;
+        }
+
+        .faq.open p {
+            display: block;
+        }
+
+        .community-section {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .community-section h2 {
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            color: #333;
+        }
+
+        .community-map {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .community-map img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .offer-item {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .offer-item:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .offer-summary {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            justify-content: space-between;
+        }
+
+        .offer-summary .image img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-left: 15px;
+        }
+
+        .offer-summary .summary-text {
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .offer-summary .summary-text h3 {
+            margin: 0;
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        .offer-summary .summary-text .weekly-price {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .offer-summary .summary-text .old-price {
+            color: #e74c3c;
+            text-decoration: line-through;
+            font-size: 0.9em;
+        }
+
+        .offer-summary .summary-text .new-price {
+            color: #27ae60;
+            font-size: 1.1em;
+        }
+
+        .offer-summary i {
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        .offer-details {
+            display: none;
+            padding: 10px;
+            background-color: #f9f9f9;
+            text-align: left;
+        }
+
+        .offer-details p {
+            margin: 5px 0;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .offer-details .highlight-text {
+            font-weight: bold;
+            color: #27ae60;
+        }
+
+        .offer-details label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #ffa500;
+            color: white;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .offer-details label input {
+            margin-right: 10px;
+        }
+
+        .offer-details.open {
+            display: block;
+        }
+
+        .saiba-mais-btn {
+            display: inline-block;
+            font-size: 0.7em;
+            padding: 3px 6px;
+            border: 1px solid #666;
+            color: #666;
+            background-color: transparent;
+            border-radius: 5px;
+            margin-top: 5px;
+            cursor: pointer;
+        }
+
+        .saiba-mais-btn:hover {
+            background-color: #666;
+            color: #fff;
+        }
+
+        .offer-item.open .saiba-mais-btn {
+            display: none;
+        }
+    </style>
+    <!-- Google tag (gtag.js) -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-F7E1S9FRCZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-F7E1S9FRCZ');
+    </script>
+    <script>
+        let tentativa = 0;
+
+        // Função para desmarcar outras ofertas ao selecionar uma
+        document.querySelectorAll('.offer-option').forEach(option => {
+            option.addEventListener('change', function() {
+                document.querySelectorAll('.offer-option').forEach(other => {
+                    if (other !== this) {
+                        other.checked = false;
+                    }
+                });
+            });
+        });
+
+        function redirecionar() {
+            const offers = document.querySelectorAll('.offer-option');
+            let selectedLink = null;
+            offers.forEach(offer => {
+                if (offer.checked) {
+                    selectedLink = offer.getAttribute('data-link');
+                }
+            });
+            if (selectedLink) {
+                window.location.href = selectedLink;
+            } else {
+                tentativa++;
+                mostrarPopup(1);
+            }
+        }
+
+        function mostrarPopup(popupNumber) {
+            document.querySelector('.popup-overlay').style.display = 'block';
+            document.querySelector('#popup' + popupNumber).style.display = 'block';
+        }
+
+        function fecharPopup() {
+            document.querySelector('.popup-overlay').style.display = 'none';
+            document.querySelector('#popup1').style.display = 'none';
+        }
+
+        // Script para adicionar parâmetros nos links
+        window.onload = function () {
+            var offers = document.querySelectorAll('.offer-option');
+            offers.forEach(offer => {
+                var link = offer.getAttribute('data-link').trim() +
+                    (offer.getAttribute('data-link').indexOf("?") > 0 ? '&' : '?') +
+                    document.location.search.replace('?', '').toString();
+                offer.setAttribute('data-link', link);
+            });
+
+            startTimer(300, 'timer'); // Inicializa o timer com 5 minutos (300 segundos)
+        }
+
+        // Função para alternar a exibição das FAQs
+        function toggleFaq(faqElement) {
+            faqElement.classList.toggle('open');
+        }
+
+        // Função para iniciar o timer de contagem regressiva
+        function startTimer(duration, elementId) {
+            let timer = duration, minutes, seconds;
+            setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                document.getElementById(elementId).textContent = minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    timer = duration;
+                }
+            }, 1000);
+        }
+
+        // Função para alternar a exibição das ofertas
+        function toggleOffer(offerElement) {
+            const details = offerElement.querySelector('.offer-details');
+            const icon = offerElement.querySelector('.offer-summary i');
+            const saibaMaisBtn = offerElement.querySelector('.saiba-mais-btn');
+            const allOffers = document.querySelectorAll('.offer-item');
+            const checkbox = offerElement.querySelector('.offer-option');
+
+            allOffers.forEach(offer => {
+                if (offer !== offerElement) {
+                    offer.querySelector('.offer-details').style.display = 'none';
+                    offer.querySelector('.offer-summary i').classList.remove('fa-chevron-up');
+                    offer.querySelector('.offer-summary i').classList.add('fa-chevron-down');
+                    offer.querySelector('.saiba-mais-btn').style.display = 'inline-block';
+                }
+            });
+
+            if (details.style.display === 'block') {
+                details.style.display = 'none';
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+                saibaMaisBtn.style.display = 'inline-block';
+                checkbox.checked = false;
+            } else {
+                details.style.display = 'block';
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+                saibaMaisBtn.style.display = 'none';
+                checkbox.checked = true;
+            }
+        }
+
+        // Função para rolar até as ofertas
+        function scrollToOffers() {
+            document.querySelector('.container').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</head>
+<body>
+    <div class="container" style="margin-top: 60px;"> <!-- Margin added to avoid overlap with top banner -->
+        <div class="shipping">
+            <label>
+                <input type="radio" name="frete" checked="" disabled="">
+                🚚 Frete: selecione nessa página
+            </label>
+        </div>
+        <h2>5 ofertas disponíveis</h2>
+        <h3>Escolha a sua e clique no botão verde abaixo!</h3>
+
+        
+        
+
+        <div class="offer-item" onclick="toggleOffer(this)">
+            <div class="offer-summary">
+                <div class="summary-text">
+                    <h3>2 AMOSTRAS</h3>
+                    <button class="saiba-mais-btn">Selecionar</button>
+                </div>
+                <div class="image">
+                    <img src="images/image2.png" alt="2 Amostras">
+                </div>
+                <div class="summary-text">
+                    <p class="old-price">R$ 375,00</p>
+                    <p class="new-price">R$ 56,81</p>
+                    <i class="fas fa-chevron-up"></i>
+                </div>
+            </div>
+            <div class="offer-details">
+                <p class="highlight-text">Dobre a experiência e economize ainda mais.</p>
+                <p>📏 Aumento de até 7cm na circunferência do pênis</p>
+                <p>⏳ Duração de até 6 horas de relação sexual</p>
+                <p>💪 Ereções mais duras e firmes</p>
+                <p>💧 Aumento do esperma</p>
+                <label class="offer-select">
+                    <input type="checkbox" class="offer-option" data-link="https://pay.youshop.com.br/PMFO2UWNIXCQ5FKW?utm_source=FERA&amp;utm_campaign=%7B%7Bcampaign.name%7D%7D%7C%7B%7Bcampaign.id%7D%7D&amp;utm_medium=%7B%7Badset.name%7D%7D%7C%7B%7Badset.id%7D%7D&amp;utm_content=%7B%7Bad.name%7D%7D%7C%7B%7Bad.id%7D%7D&amp;utm_term=%7B%7Bplacement%7D%7D&amp;xcod=FBhQwK21wXxR%7B%7Bcampaign.name%7D%7D%7C%7B%7Bcampaign.id%7D%7DhQwK21wXxR%7B%7Badset.name%7D%7D%7C%7B%7Badset.id%7D%7DhQwK21wXxR%7B%7Bad.name%7D%7D%7C%7B%7Bad.id%7D%7DhQwK21wXxR%7B%7Bplacement%7D%7D&amp;src=FERA&amp;rtkcid=66f09db59592282458f59f72&amp;fbclid=">
+                    PEGAR OFERTA
+                </label>
+            </div>
+        </div>
+
+        <div class="offer-item open" onclick="toggleOffer(this)">
+            <div class="offer-summary">
+                <div class="summary-text">
+                    <h3>3 AMOSTRAS</h3>
+                    <button class="saiba-mais-btn">Selecionar</button>
+                </div>
+                <div class="image">
+                    <img src="images/image3.png" alt="3 Amostras">
+                </div>
+                <div class="summary-text">
+                    <p class="old-price">R$ 562,50</p>
+                    <p class="new-price">R$ 79,99</p>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+            <div class="offer-details" style="display: block;">
+                <p class="highlight-text">Três vezes a eficácia por um preço imbatível.</p>
+                <p>📏 Aumento de até 7cm na circunferência do pênis</p>
+                <p>⏳ Duração de até 6 horas de relação sexual</p>
+                <p>💪 Ereções mais duras e firmes</p>
+                <p>💧 Aumento do esperma</p>
+                <label class="offer-select">
+                    <input type="checkbox" class="offer-option" data-link="https://pay.youshop.com.br/IWFWGDYLGKSTSONA?utm_source=FERA&amp;utm_campaign=%7B%7Bcampaign.name%7D%7D%7C%7B%7Bcampaign.id%7D%7D&amp;utm_medium=%7B%7Badset.name%7D%7D%7C%7B%7Badset.id%7D%7D&amp;utm_content=%7B%7Bad.name%7D%7D%7C%7B%7Bad.id%7D%7D&amp;utm_term=%7B%7Bplacement%7D%7D&amp;xcod=FBhQwK21wXxR%7B%7Bcampaign.name%7D%7D%7C%7B%7Bcampaign.id%7D%7DhQwK21wXxR%7B%7Badset.name%7D%7D%7C%7B%7Badset.id%7D%7DhQwK21wXxR%7B%7Bad.name%7D%7D%7C%7B%7Bad.id%7D%7DhQwK21wXxR%7B%7Bplacement%7D%7D&amp;src=FERA&amp;rtkcid=66f09db59592282458f59f72&amp;fbclid=">
+                    PEGAR OFERTA
+                </label>
+            </div>
+        </div>
+
+        <div class="offer-item" onclick="toggleOffer(this)">
+            <div class="offer-summary">
+                <div class="summary-text">
+                    <h3>5 AMOSTRAS</h3>
+                    <button class="saiba-mais-btn">Selecionar</button>
+                </div>
+                <div class="image">
+                    <img src="images/image5.png" alt="5 Amostras">
+                </div>
+                <div class="summary-text">
+                    <p class="old-price">R$ 937,50</p>
+                    <p class="new-price">R$ 129,22</p>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+            <div class="offer-details">
+                <p class="highlight-text">Máxima economia e resultados incríveis. Oferta imperdível!</p>
+                <p>📏 Aumento de até 7cm na circunferência do pênis</p>
+                <p>⏳ Duração de até 6 horas de relação sexual</p>
+                <p>💪 Ereções mais duras e firmes</p>
+                <p>💧 Aumento do esperma</p>
+                <label class="offer-select">
+                    <input type="checkbox" class="offer-option" data-link="https://pay.youshop.com.br/POKZ8SPOVWWMM6LY?utm_source=FERA&amp;utm_campaign=%7B%7Bcampaign.name%7D%7D%7C%7B%7Bcampaign.id%7D%7D&amp;utm_medium=%7B%7Badset.name%7D%7D%7C%7B%7Badset.id%7D%7D&amp;utm_content=%7B%7Bad.name%7D%7D%7C%7B%7Bad.id%7D%7D&amp;utm_term=%7B%7Bplacement%7D%7D&amp;xcod=FBhQwK21wXxR%7B%7Bcampaign.name%7D%7D%7C%7B%7Bcampaign.id%7D%7DhQwK21wXxR%7B%7Badset.name%7D%7D%7C%7B%7Badset.id%7D%7DhQwK21wXxR%7B%7Bad.name%7D%7D%7C%7B%7Bad.id%7D%7DhQwK21wXxR%7B%7Bplacement%7D%7D&amp;src=FERA&amp;rtkcid=66f09db59592282458f59f72&amp;fbclid=">
+                    PEGAR OFERTA
+                </label>
+            </div>
+        </div>
+
+<div class="offer-item" onclick="toggleOffer(this)">
+            <div class="offer-summary">
+                <div class="summary-text">
+                    <h3>10 AMOSTRAS</h3>
+                    <button class="saiba-mais-btn">Selecionar</button>
+                </div>
+                <div class="image">
+                    <img src="images/10.png" alt="10 Amostras">
+                </div>
+                <div class="summary-text">
+                    <p class="old-price">R$ 1875,00</p>
+                    <p class="new-price">R$ 187,50</p>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+            <div class="offer-details">
+                <p class="highlight-text">Tratamento completo e definitivo. Use agora e só, pra sempre!</p>
+                <p>📏 Aumento de até 7cm na circunferência do pênis</p>
+                <p>⏳ Duração de até 6 horas de relação sexual</p>
+                <p>💪 Ereções mais duras e firmes</p>
+                <p>💧 Aumento do esperma</p>
+                <label class="offer-select">
+                    <input type="checkbox" class="offer-option" data-link="https://pay.youshop.com.br/BFGLGDUJJ4XSJ4HW?utm_source=FERA&amp;utm_campaign=%7B%7Bcampaign.name%7D%7D%7C%7B%7Bcampaign.id%7D%7D&amp;utm_medium=%7B%7Badset.name%7D%7D%7C%7B%7Badset.id%7D%7D&amp;utm_content=%7B%7Bad.name%7D%7D%7C%7B%7Bad.id%7D%7D&amp;utm_term=%7B%7Bplacement%7D%7D&amp;xcod=FBhQwK21wXxR%7B%7Bcampaign.name%7D%7D%7C%7B%7Bcampaign.id%7D%7DhQwK21wXxR%7B%7Badset.name%7D%7D%7C%7B%7Badset.id%7D%7DhQwK21wXxR%7B%7Bad.name%7D%7D%7C%7B%7Bad.id%7D%7DhQwK21wXxR%7B%7Bplacement%7D%7D&amp;src=FERA&amp;rtkcid=66f09db59592282458f59f72&amp;fbclid=">
+                    PEGAR OFERTA
+                </label>
+            </div>
+        </div>
+
+        <button class="continue" onclick="redirecionar()">GARANTIR OFERTA AGORA!</button>
+
+        <div class="guarantee-box">
+            <div class="guarantee-icon">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <div class="guarantee-text">
+                <h3>Resultados em 30 dias ou seu dinheiro de volta</h3>
+                <p>Temos total confiança na qualidade e eficiência dos nossos produtos. Se você está pronto para alcançar seus objetivos, você não corre risco.</p>
+            </div>
+        </div>
+
+        <div class="review-section">
+            <h2>Junte-se a um milhão de usuários felizes</h2>
+            <div class="review">
+                <img src="images/user1.jpg" alt="Usuário">
+                <div class="review-text">
+                    <h4>Marcos P.</h4>
+                    <p>O Eronex mudou minha vida. Minha confiança aumentou e me sinto mais jovem. 😎</p>
+                </div>
+            </div>
+            <div class="review">
+                <img src="images/user2.jpg" alt="Usuário">
+                <div class="review-text">
+                    <h4>José S.</h4>
+                    <p>Os resultados foram incríveis. Eu recomendo o Eronex para todos. 😍</p>
+                </div>
+            </div>
+            <div class="review">
+                <img src="images/user3.jpg" alt="Usuário">
+                <div class="review-text">
+                    <h4>Everaldo A.</h4>
+                    <p>Minha performance melhorou drasticamente. Eronex é fantástico. 😉</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="community-section">
+            <h2>Junte-se �&nbsp; mais de 1 milhão de homens com RESULTADOS REAIS</h2>
+            <div class="community-map">
+                <img src="images/result.jpeg" alt="+7CM">
+                <p>+6,7 cm é a média de aumento dos nossos clientes</p>
+            </div>
+        </div>
+
+        <div class="faq-section">
+            <h2>Tem perguntas?</h2>
+            <div class="faq" onclick="toggleFaq(this)">
+                <h3>O Eronex faz mal para o coração? <i class="fas fa-chevron-down"></i></h3>
+                <p>O Eronex é um suplemento natural e seguro para o coração.</p>
+            </div>
+            <div class="faq" onclick="toggleFaq(this)">
+                <h3>O Eronex tem registro na ANVISA? <i class="fas fa-chevron-down"></i></h3>
+                <p>Sim, o Eronex é registrado na ANVISA, garantindo sua qualidade e segurança.</p>
+            </div>
+            <div class="faq" onclick="toggleFaq(this)">
+                <h3>Quanto tempo leva para chegar? <i class="fas fa-chevron-down"></i></h3>
+                <p>O tempo de entrega do Eronex varia de acordo com a sua localização, a postagem ocorre geralmente de 3 a 10 dias úteis.
+A entrega é realizada pelos Correios ou transportadora da região.</p>
+            </div>
+            <div class="faq" onclick="toggleFaq(this)">
+                <h3>Como devo usar o Eronex? <i class="fas fa-chevron-down"></i></h3>
+                <p>Recomendamos 2 doses de Eronex por dia, que podem ser ingeridas pela manhã e noite.</p>
+            </div>
+            <div class="faq" onclick="toggleFaq(this)">
+                <h3>Quais são os ingredientes do Eronex? <i class="fas fa-chevron-down"></i></h3>
+                <p>O Eronex é composto por 11 extratos naturais, 2 aminoácidos, um antioxidante, biotina e quercetina.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed-discount">
+        <div class="discount-timer">
+            <span>Oferta disponível por:</span>
+            <span id="timer">05:00</span>
+        </div>
+        <button class="get-plan" onclick="redirecionar()">PEDIR</button>
+    </div>
+
+    <div class="popup-overlay"></div>
+    <div class="popup" id="popup1">
+        <button class="close" onclick="fecharPopup()">×</button>
+        <p>Por favor, selecione uma das ofertas antes de continuar.</p>
+        <button onclick="fecharPopup()">OK</button>
+    </div>
+
+</body></html>

@@ -1,0 +1,270 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alinha o conteúdo ao topo */
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f9f9f9;
+    padding-top: 0; /* Remova qualquer padding no topo */
+}
+
+.container {
+    width: 90%;
+    max-width: 400px;
+    background: #fff;
+    padding: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    box-sizing: border-box;
+    margin-top: 20px; /* Adiciona um pequeno espaço no topo */
+    border-radius: 10px; /* Borda arredondada */
+    background-color: #F7F7F7; /* Fundo #DDD */
+}
+
+h2 {
+    color: #27ae60;
+    font-size: 1.2em;
+}
+
+.shipping {
+    margin-bottom: 10px;
+    font-size: 0.9em;
+    text-align: left;
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 5px; /* Borda arredondada */
+    box-sizing: border-box;
+    background-color: #F7F7F7; /* Fundo #DDD */
+}
+
+.shipping input[type="radio"] {
+    margin-right: 5px;
+}
+
+.offer {
+    display: flex;
+    flex-direction: row; /* Alinha horizontalmente no mobile */
+    border: 1px dashed #ffa500;
+    padding: 3px; /* Diminui o padding */
+    margin-bottom: 8px; /* Diminui o espaço inferior */
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%; /* Garante que o contêiner não ultrapasse a largura */
+    max-width: 350px; /* Ajusta a largura máxima */
+    border-radius: 3px; /* Borda arredondada */
+    background-color: #FFF; /* Fundo #DDD */
+}
+
+.image {
+    flex-shrink: 0;
+    margin-right: 10px;
+}
+
+.image img {
+    width: 70px; /* Ajustei o tamanho para dispositivos móveis */
+    height: 70px; /* Ajustei o tamanho para dispositivos móveis */
+    object-fit: cover;
+    border: 1px solid #ccc;
+    border-radius: 5px; /* Borda arredondada */
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    text-align: left;
+}
+
+.details h3 {
+    margin: 0;
+    font-size: 1em;
+}
+
+.details p {
+    margin: 3px 0;
+    font-size: 1.0em;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: #e74c3c;
+    font-size: 0.8em;
+    font-weight: bold; /* Fonte mais grossa */
+}
+
+.new-price {
+    font-size: 1.2em;
+    color: #27ae60;
+    font-weight: bold; /* Fonte mais grossa */
+}
+
+.price-offer-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.details label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5px; /* Espaçamento entre o preço e o botão */
+    cursor: pointer;
+    background-color: #ffa500;
+    padding: 3px; /* Diminui o padding */
+    border-radius: 5px; /* Borda arredondada */
+    color: #fff;
+    font-weight: bold;
+    width: auto; /* Ajusta a largura automaticamente */
+    max-width: 100px; /* Define uma largura máxima menor */
+    font-size: 0.8em; /* Diminui o tamanho da fonte */
+}
+
+.details input[type="checkbox"] {
+    margin-right: 3px; /* Diminui o espaçamento */
+    transform: scale(0.7); /* Reduz o tamanho do checkbox */
+}
+
+.continue {
+    width: 100%;
+    background-color: #27ae60;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 1.2em;
+    border-radius: 5px; /* Borda arredondada */
+}
+
+.continue:hover {
+    background-color: #219150;
+}
+
+.guarantee-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+}
+
+.guarantee-text {
+    text-align: left;
+    max-width: 75%;
+}
+
+.guarantee-text h3 {
+    margin: 0 0 10px;
+    color: #333;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.guarantee-text p {
+    margin: 0;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.guarantee-icon {
+    font-size: 2em;
+    color: #27ae60;
+}
+
+@media (max-width: 768px) {
+    .guarantee-box {
+        flex-direction: column;
+        text-align: center;
+    }
+    .guarantee-text {
+        max-width: 100%;
+        margin-bottom: 15px;
+    }
+}
+.offer-section {
+    margin-top: 40px;
+}
+
+.offer {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.offer-summary {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+}
+
+.offer-summary .details {
+    flex-grow: 1;
+}
+
+.offer-summary h3 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.offer-summary p {
+    margin: 5px 0;
+    font-size: 1em;
+    color: #333;
+}
+
+.offer-summary .per-week {
+    font-weight: bold;
+}
+
+.offer-summary i {
+    font-size: 1.5em;
+    transition: transform 0.3s;
+}
+
+.offer-details {
+    display: none;
+    padding: 15px;
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+}
+
+.offer-details p {
+    margin: 10px 0;
+    font-size: 1em;
+    color: #333;
+}
+
+.offer-details label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background-color: #27ae60;
+    padding: 10px;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.offer-details label input {
+    margin-right: 10px;
+}
+
+.offer.open .offer-details {
+    display: block;
+}
+
+.offer.open .offer-summary i {
+    transform: rotate(180deg);
+}
